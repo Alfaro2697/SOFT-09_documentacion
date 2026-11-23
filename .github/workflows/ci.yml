@@ -1,0 +1,22 @@
+name: CI Basico
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el codigo
+        uses: actions/checkout@v4
+
+      - name: Listar archivos del repositorio
+        run: ls -la
+
+      - name: Verificar que existe el README
+        run: test -f README.md && echo "README encontrado"
+
+      - name: Mostrar autor del README
+        run: grep "Autor" README.md
